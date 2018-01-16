@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="w3-strap and css/w3 strap/w3.css" />
+    </head>
+
+    <body style="height:200vh">
+       <canvas id="canvas"></canvas>
+        <img src="i2.jpg" alt="" style="display:none" id="i2">
+        <img src="i3.png" alt="" style="display:none" id="i3">
+    </body>
+    <script>
+        var canvas=document.getElementById('canvas'),
+            ctx=canvas.getContext('2d'),
+            y=window.pageYOffset,
+            img=document.getElementById('i2');
+            img3=document.getElementById('i3');
+
+        function show(x){
+            if(x>800){
+                return;}
+            
+            
+            radius=innerHeight+90-(x/1.1);
+            y_=innerHeight/2;
+            x_=innerWidth/2;
+            ctx.fillStyle="white";
+            ctx.drawImage(img,0,x,innerWidth,innerHeight);
+            if(x>187){
+                _x=x/0.8-500;
+                ctx.drawImage(img3,_x,y_+x_-radius+(x-187)/1.5,50+(x-187)/5,50+(x-187)/5);
+            }
+            var grd=ctx.createLinearGradient(0,0,innerWidth,innerHeight);
+            grd.addColorStop(0,"black");
+            grd.addColorStop(1,"white");
+            ctx.fillStyle=grd;
+            
+            ctx.beginPath();
+            ctx.arc(x_,y_+x_-radius+200,radius,0,Math.PI*2);
+            ctx.fill();
+        }
+        
+        window.onload=function(){
+
+                canvas.height=window.innerHeight*2.5;
+                canvas.width=window.innerWidth;
+                
+
+                ctx.fillStyle="white";
+                ctx.fillRect(0,0,canvas.width,canvas.height);
+                show(y);
+                window.onscroll=function(){
+                    y=pageYOffset;
+                    show(y);
+                    
+                }        
+                
+        }
+
+    </script>
+    
+    
+</html>
